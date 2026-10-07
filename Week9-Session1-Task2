@@ -1,0 +1,83 @@
+**RIDE SHARING PLATFORM SIMULATOR**
+
+**Problem Statement:**
+Write a Java program to simulate a simple ride-sharing platform. The system allows users to request a ride, assign a driver, calculate the fare, and display the ride details.
+
+**Operations:**
+
+1. Request a ride
+2. Assign a driver
+3. Calculate fare
+4. Display ride details
+5. Exit
+
+**Sample Input:**
+
+```text
+1
+John
+Chennai
+Bangalore
+10
+2
+3
+4
+5
+```
+
+**Sample Output:**
+
+```text
+Ride requested successfully.
+Passenger: John
+From: Chennai
+To: Bangalore
+Distance: 10 km
+Driver assigned successfully.
+Fare: Rs.150
+Ride Details displayed successfully.
+Thank you for using the Ride Sharing Platform.
+```
+
+**Java Code:**
+
+```java
+import java.util.Scanner;
+
+public class RideSharingPlatform {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        String passenger = "";
+        String from = "";
+        String to = "";
+        String driver = "";
+        double distance = 0;
+        double fare = 0;
+
+        int choice;
+
+        do {
+            System.out.println("\n1. Request a Ride");
+            System.out.println("2. Assign Driver");
+            System.out.println("3. Calculate Fare");
+            System.out.println("4. Display Ride Details");
+            System.out.println("5. Exit");
+
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+            sc.nextLine();
+
+            switch (choice) {
+
+                case 1:
+                    System.out.print("Enter passenger name: ");
+                    passenger = sc.nextLine();
+
+                    System.out.print("Enter starting location: ");
+                    from = sc.nextLine();
+
+                    Sy
+```
