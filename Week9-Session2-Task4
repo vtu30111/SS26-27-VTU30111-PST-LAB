@@ -1,0 +1,161 @@
+**TASK 4: PAYMENT PROCESSING SYSTEM**
+
+**Problem Statement:**
+Design a **Payment Processing System** using a Java **interface and abstract class**.
+
+Create an interface `Payment` with the method:
+`void pay(double amount);`
+
+Implement the interface using:
+
+* `CreditCardPayment`
+* `UPIPayment`
+* `NetBankingPayment`
+
+Create an abstract class `PaymentProcessor` containing:
+`abstract double processPayment(Payment payment, double amount);`
+
+Create a concrete class `OnlinePaymentProcessor` that extends `PaymentProcessor`.
+
+**Processing Rules:**
+
+* **Credit Card:** 2% processing fee
+* **UPI:** 1% processing fee
+* **Net Banking:** 1.5% processing fee
+
+The program calculates the **final amount paid**, including the processing fee.
+
+**Input Format:**
+The first line contains an integer `N`, representing the number of transactions.
+
+Each of the next `N` lines contains:
+`paymentType amount`
+
+* `1` → Credit Card
+* `2` → UPI
+* `3` → Net Banking
+
+**Output Format:**
+For each transaction, print:
+`paymentType finalAmount`
+
+The final amount is rounded to two decimal places.
+
+**Sample Input:**
+
+```text
+3
+1 1000
+2 2000
+3 5000
+```
+
+**Sample Output:**
+
+```text
+CreditCard 1020.00
+UPI 2020.00
+NetBanking 5075.00
+```
+
+**Java Code:**
+
+```java
+import java.util.Scanner;
+
+interface Payment {
+    void pay(double amount);
+}
+
+class CreditCardPayment implements Payment {
+    public void pay(double amount) {
+        System.out.println("Credit Card Payment: " + amount);
+    }
+}
+
+class UPIPayment implements Payment {
+    public void pay(double amount) {
+        System.out.println("UPI Payment: " + amount);
+    }
+}
+
+class NetBankingPayment implements Payment {
+    public void pay(double amount) {
+        System.out.println("Net Banking Payment: " + amount);
+    }
+}
+
+abstract class PaymentProcessor {
+    abstract double processPayment(Payment payment, double amount);
+}
+
+class OnlinePaymentProcessor extends PaymentProcessor {
+
+    double processPayment(Payment payment, double amount) {
+
+        payment.pay(amount);
+
+        if (payment instanceof CreditCardPayment) {
+            return amount * 1.02;
+        }
+        else if (payment instanceof UPIPayment) {
+            return amount * 1.01;
+        }
+        else if (payment instanceof NetBankingPayment) {
+            return amount * 1.015;
+        }
+
+        return amount;
+    }
+}
+
+public class PaymentProcessingSystem {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        PaymentProcessor processor =
+                new OnlinePaymentProcessor();
+
+        for (int i = 0; i < n; i++) {
+
+            int type = sc.nextInt();
+            double amount = sc.nextDouble();
+
+            Payment payment;
+            String paymentName;
+
+            if (type == 1) {
+                payment = new CreditCardPayment();
+                paymentName = "CreditCard";
+            }
+            else if (type == 2) {
+                payment = new UPIPayment();
+                paymentName = "UPI";
+            }
+            else {
+                payment = new NetBankingPayment();
+                paymentName = "NetBanking";
+            }
+
+            double finalAmount =
+                    processor.processPayment(payment, amount);
+
+            System.out.printf("%s %.2f%n",
+                    paymentName, finalAmount);
+        }
+
+        sc.close();
+    }
+}
+```
+
+**Key Concepts:**
+`interface` → defines the payment behavior.
+`abstract class` → defines payment processing.
+`implements` → used by payment classes.
+`extends` → used by `OnlinePaymentProcessor`.
+The design allows new payment types to be added without changing the basic `PaymentProcessor` class.
