@@ -1,0 +1,75 @@
+**BANK TRANSACTION SYSTEM**
+
+**Problem Statement:**
+Write a Java program to implement a simple bank transaction system. The system starts with an initial balance and allows the user to deposit money, withdraw money, check the balance, or exit the system.
+
+**Operations:**
+
+1. Deposit money
+2. Withdraw money
+3. Check balance
+4. Exit
+
+**Sample Input:**
+
+```text
+10000
+1
+5000
+2
+3000
+3
+4
+```
+
+**Sample Output:**
+
+```text
+Initial Balance: 10000
+Amount deposited successfully.
+Amount withdrawn successfully.
+Current Balance: 12000
+Thank you for using the Bank Transaction System.
+```
+
+**Java Code:**
+
+```java
+import java.util.Scanner;
+
+public class BankTransactionSystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Initial Balance: ");
+        double balance = sc.nextDouble();
+
+        int choice;
+
+        do {
+            System.out.println("\n1. Deposit");
+            System.out.println("2. Withdraw");
+            System.out.println("3. Check Balance");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter deposit amount: ");
+                    double deposit = sc.nextDouble();
+
+                    if (deposit > 0) {
+                        balance += deposit;
+                        System.out.println("Amount deposited successfully.");
+                    } else {
+                        System.out.println("Invalid deposit amount.");
+                    }
+                    break;
+
+                case 2:
+                    System.out.print("Enter withdrawal amount: ");
+                    double withdraw = sc.nextDouble();
+
+                    if (withdraw
+```
