@@ -1,0 +1,91 @@
+# Question 10: Phone Contact Directory
+
+**Problem Statement:**
+
+A mobile application stores people's names and phone numbers. Users can search for a contact or update an existing phone number. Write a Java program using a `HashMap` to implement a phone contact directory.
+
+**Sample Input:**
+
+```text
+4
+Prakash 9876543210
+Rahul 9123456780
+Priya 9988776655
+Anil 9090909090
+2
+SEARCH Rahul
+UPDATE Priya 9000011111
+```
+
+**Sample Output:**
+
+```text
+Contact Found:
+Rahul - 9123456780
+
+Contact Updated Successfully:
+Priya - 9000011111
+```
+
+**Java Code:**
+
+```java
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        HashMap<String, String> contacts = new HashMap<>();
+
+        int n = sc.nextInt();
+
+        // Store contacts
+        for (int i = 0; i < n; i++) {
+            String name = sc.next();
+            String phone = sc.next();
+            contacts.put(name, phone);
+        }
+
+        int operations = sc.nextInt();
+
+        for (int i = 0; i < operations; i++) {
+            String command = sc.next();
+            String name = sc.next();
+
+            if (command.equalsIgnoreCase("SEARCH")) {
+                if (contacts.containsKey(name)) {
+                    System.out.println("Contact Found:");
+                    System.out.println(name + " - "
+                            + contacts.get(name));
+                } else {
+                    System.out.println("Contact Not Found");
+                }
+            } else if (command.equalsIgnoreCase("UPDATE")) {
+                if (contacts.containsKey(name)) {
+                    String newPhone = sc.next();
+                    contacts.put(name, newPhone);
+
+                    System.out.println(
+                            "Contact Updated Successfully:");
+                    System.out.println(name + " - "
+                            + contacts.get(name));
+                } else {
+                    System.out.println("Contact Not Found");
+                }
+            }
+        }
+
+        sc.close();
+    }
+}
+```
+
+**Concept Used:**
+
+* **HashMap:** Stores contact names as keys and phone numbers as values.
+* **put():** Adds a contact or updates an existing phone number.
+* **get():** Retrieves a contact's phone number.
+* **containsKey():** Checks whether a contact exists.
+* **Search and Update:** Allows users to find contacts and change their numbers.
