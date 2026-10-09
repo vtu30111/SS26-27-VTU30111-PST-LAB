@@ -1,0 +1,87 @@
+# Question 3: Browser History — Linear Collection
+
+**Problem Statement:**
+
+A web browser stores recently visited pages. When the user presses the Back button, the most recently visited page should be removed first. Write a Java program using a linear collection to store browser history and implement the Back button using a Stack.
+
+**Sample Input:**
+
+```text
+5
+google.com
+youtube.com
+github.com
+wikipedia.org
+amazon.com
+2
+```
+
+**Sample Output:**
+
+```text
+Browser History:
+google.com
+youtube.com
+github.com
+wikipedia.org
+amazon.com
+
+After pressing Back 2 times:
+google.com
+youtube.com
+github.com
+```
+
+**Java Code:**
+
+```java
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        Stack<String> history = new Stack<>();
+
+        int n = sc.nextInt();
+        sc.nextLine();
+
+        // Store visited pages
+        for (int i = 0; i < n; i++) {
+            String page = sc.nextLine();
+            history.push(page);
+        }
+
+        System.out.println("Browser History:");
+        for (String page : history) {
+            System.out.println(page);
+        }
+
+        int back = sc.nextInt();
+
+        // Press Back button
+        for (int i = 0; i < back; i++) {
+            if (!history.isEmpty()) {
+                history.pop();
+            }
+        }
+
+        System.out.println("\nAfter pressing Back "
+                + back + " times:");
+
+        for (String page : history) {
+            System.out.println(page);
+        }
+
+        sc.close();
+    }
+}
+```
+
+**Concept Used:**
+
+* **Stack:** Stores visited web pages.
+* **Push:** Adds a newly visited page to the history.
+* **Pop:** Removes the most recently visited page when Back is pressed.
+* **LIFO (Last In, First Out):** The last page added is the first page removed.
