@@ -1,0 +1,138 @@
+# Question 5: Music Playlist — Singly Linked List
+
+**Problem Statement:**
+
+A music application maintains songs in a playlist. Users can add songs to the playlist and remove a song when they no longer want it.
+
+**Question:**
+
+Implement a linked list playlist that supports:
+
+1. Adding songs.
+2. Removing a song.
+3. Displaying the playlist.
+
+**Sample Input:**
+
+```text
+4
+ShapeOfYou
+Believer
+Perfect
+Memories
+Believer
+```
+
+**Sample Output:**
+
+```text
+Music Playlist:
+ShapeOfYou
+Believer
+Perfect
+Memories
+
+After Removing Believer:
+ShapeOfYou
+Perfect
+Memories
+```
+
+**Java Code:**
+
+```java
+import java.util.Scanner;
+
+class Node {
+    String song;
+    Node next;
+
+    Node(String song) {
+        this.song = song;
+        this.next = null;
+    }
+}
+
+public class Main {
+    Node head = null;
+
+    // Add a song to the end of the playlist
+    public void addSong(String song) {
+        Node newNode = new Node(song);
+
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+
+        Node current = head;
+        while (current.next != null) {
+            current = current.next;
+        }
+
+        current.next = newNode;
+    }
+
+    // Remove the first matching song
+    public void removeSong(String song) {
+        if (head == null) {
+            return;
+        }
+
+        if (head.song.equals(song)) {
+            head = head.next;
+            return;
+        }
+
+        Node current = head;
+        while (current.next != null
+                && !current.next.song.equals(song)) {
+            current = current.next;
+        }
+
+        if (current.next != null) {
+            current.next = current.next.next;
+        }
+    }
+
+    // Display all songs
+    public void displayPlaylist() {
+        Node current = head;
+
+        while (current != null) {
+            System.out.println(current.song);
+            current = current.next;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Main playlist = new Main();
+
+        int n = sc.nextInt();
+
+        for (int i = 0; i < n; i++) {
+            playlist.addSong(sc.next());
+        }
+
+        String remove = sc.next();
+
+        System.out.println("Music Playlist:");
+        playlist.displayPlaylist();
+
+        playlist.removeSong(remove);
+
+        System.out.println("\nAfter Removing " + remove + ":");
+        playlist.displayPlaylist();
+
+        sc.close();
+    }
+}
+```
+
+**Concept Used:**
+
+* **Singly Linked List:** Each node stores a song and a reference to the next node.
+* **Adding:** Inserts a song at the end of the playlist.
+* **Removing:** Deletes the first matching song.
+* **Displaying:** Traverses the list from the head to the last node.
