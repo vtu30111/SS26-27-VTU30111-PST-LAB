@@ -1,0 +1,79 @@
+# Question 8: Find Common Subjects Between Two Students
+
+**Problem Statement:**
+
+Two students have selected different subjects. Write a Java program using `retainAll()` to find the subjects common to both students.
+
+**Sample Input:**
+
+```text
+5
+Math
+Physics
+Chemistry
+Biology
+English
+4
+Physics
+Biology
+ComputerScience
+Math
+```
+
+**Sample Output:**
+
+```text
+Common Subjects:
+Math
+Physics
+Biology
+```
+
+**Java Code:**
+
+```java
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        ArrayList<String> student1 = new ArrayList<>();
+        ArrayList<String> student2 = new ArrayList<>();
+
+        // Read subjects of Student 1
+        int n = sc.nextInt();
+        sc.nextLine();
+
+        for (int i = 0; i < n; i++) {
+            student1.add(sc.nextLine());
+        }
+
+        // Read subjects of Student 2
+        int m = sc.nextInt();
+        sc.nextLine();
+
+        for (int i = 0; i < m; i++) {
+            student2.add(sc.nextLine());
+        }
+
+        // Keep only subjects common to both students
+        student1.retainAll(student2);
+
+        System.out.println("Common Subjects:");
+        for (String subject : student1) {
+            System.out.println(subject);
+        }
+
+        sc.close();
+    }
+}
+```
+
+**Concept Used:**
+
+* **ArrayList:** Stores each student's selected subjects.
+* **retainAll():** Keeps only elements that are also present in the second collection.
+* **Common Elements:** Displays subjects selected by both students.
+* **Result:** The common subjects remain in the first student's original order.
