@@ -1,0 +1,72 @@
+# Question 9: Student Marks Using HashMap
+
+**Problem Statement:**
+
+A teacher wants to store the marks of students using their roll numbers as keys. Write a Java program to display the marks of a particular student.
+
+**Sample Input:**
+
+```text
+5
+101 85
+102 90
+103 78
+104 95
+105 88
+103
+```
+
+**Sample Output:**
+
+```text
+Student Roll Number: 103
+Student Marks: 78
+```
+
+**Java Code:**
+
+```java
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        HashMap<Integer, Integer> students = new HashMap<>();
+
+        int n = sc.nextInt();
+
+        // Store roll numbers and marks
+        for (int i = 0; i < n; i++) {
+            int rollNo = sc.nextInt();
+            int marks = sc.nextInt();
+
+            students.put(rollNo, marks);
+        }
+
+        // Search for a particular student
+        int searchRollNo = sc.nextInt();
+
+        if (students.containsKey(searchRollNo)) {
+            System.out.println("Student Roll Number: "
+                    + searchRollNo);
+            System.out.println("Student Marks: "
+                    + students.get(searchRollNo));
+        } else {
+            System.out.println("Student not found");
+        }
+
+        sc.close();
+    }
+}
+```
+
+**Concept Used:**
+
+* **HashMap:** Stores data as key-value pairs.
+* **Key:** Student roll number.
+* **Value:** Student marks.
+* **put():** Adds a roll number and its marks.
+* **get():** Retrieves marks using the roll number.
+* **containsKey():** Checks whether the roll number exists.
