@@ -1,0 +1,112 @@
+# Question 2: Student Marks Management System
+
+**Problem Statement:**
+
+A teacher wants to create a Java program to store the marks of students in a class. The number of students is not known in advance, so the program should use a dynamic array. The teacher can add marks one by one, and the array should automatically increase its size when it becomes full.
+
+**Sample Input:**
+
+```text
+5
+85
+90
+78
+92
+88
+```
+
+**Sample Output:**
+
+```text
+Marks of Students:
+85 90 78 92 88
+
+Total Marks: 433
+Average Marks: 86.60
+Highest Marks: 92
+Lowest Marks: 78
+```
+
+**Java Code:**
+
+```java
+import java.util.Scanner;
+
+public class Main {
+    private int[] marks;
+    private int size;
+
+    public Main() {
+        marks = new int[2];
+        size = 0;
+    }
+
+    // Add marks and increase array size when full
+    public void addMarks(int mark) {
+        if (size == marks.length) {
+            int[] newMarks = new int[marks.length * 2];
+
+            for (int i = 0; i < marks.length; i++) {
+                newMarks[i] = marks[i];
+            }
+
+            marks = newMarks;
+        }
+
+        marks[size] = mark;
+        size++;
+    }
+
+    public void displayMarks() {
+        int total = 0;
+        int highest = marks[0];
+        int lowest = marks[0];
+
+        System.out.println("Marks of Students:");
+
+        for (int i = 0; i < size; i++) {
+            System.out.print(marks[i] + " ");
+            total += marks[i];
+
+            if (marks[i] > highest) {
+                highest = marks[i];
+            }
+
+            if (marks[i] < lowest) {
+                lowest = marks[i];
+            }
+        }
+
+        double average = (double) total / size;
+
+        System.out.println("\n");
+        System.out.println("Total Marks: " + total);
+        System.out.printf("Average Marks: %.2f%n", average);
+        System.out.println("Highest Marks: " + highest);
+        System.out.println("Lowest Marks: " + lowest);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        Main student = new Main();
+
+        int n = sc.nextInt();
+
+        for (int i = 0; i < n; i++) {
+            int mark = sc.nextInt();
+            student.addMarks(mark);
+        }
+
+        student.displayMarks();
+
+        sc.close();
+    }
+}
+```
+
+**Concept Used:**
+
+* **Dynamic Array:** Starts with a fixed capacity and grows when full.
+* **Array Resizing:** Creates a new array with double the previous capacity and copies existing marks.
+* **Statistics:** Calculates total, average, highest, and lowest marks.
