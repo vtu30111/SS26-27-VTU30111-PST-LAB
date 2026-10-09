@@ -1,0 +1,68 @@
+# Question 7: Display Numbers in Sorted Order
+
+**Problem Statement:**
+
+A teacher enters students' marks, but some marks are repeated. Write a Java program using a `TreeSet` to display the unique marks in ascending order.
+
+**Sample Input:**
+
+```text
+8
+75
+90
+65
+90
+80
+75
+95
+65
+```
+
+**Sample Output:**
+
+```text
+Unique Marks in Sorted Order:
+65
+75
+80
+90
+95
+```
+
+**Java Code:**
+
+```java
+import java.util.Scanner;
+import java.util.TreeSet;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        TreeSet<Integer> marks = new TreeSet<>();
+
+        int n = sc.nextInt();
+
+        // Store marks in TreeSet
+        for (int i = 0; i < n; i++) {
+            marks.add(sc.nextInt());
+        }
+
+        // Display unique marks in ascending order
+        System.out.println("Unique Marks in Sorted Order:");
+
+        for (int mark : marks) {
+            System.out.println(mark);
+        }
+
+        sc.close();
+    }
+}
+```
+
+**Concept Used:**
+
+* **TreeSet:** Stores unique elements in sorted order.
+* **add():** Inserts a mark and automatically ignores duplicates.
+* **Ascending Order:** Displays marks from smallest to largest.
+* **Automatic Sorting:** No separate sorting method is required.
