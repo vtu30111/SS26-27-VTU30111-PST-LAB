@@ -1,0 +1,90 @@
+# Question 4: Student Marks Management — Linear Collection
+
+**Problem Statement:**
+
+A teacher does not know the number of students in advance. Student marks need to be stored dynamically.
+
+**Question:**
+
+Write a Java program using an `ArrayList` to:
+
+* Store marks.
+* Display marks.
+* Find the highest mark.
+* Calculate the average.
+
+**Sample Input:**
+
+```text
+5
+85
+90
+78
+92
+88
+```
+
+**Sample Output:**
+
+```text
+Student Marks:
+85 90 78 92 88
+
+Highest Mark: 92
+Average Mark: 86.60
+```
+
+**Java Code:**
+
+```java
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        ArrayList<Integer> marks = new ArrayList<>();
+
+        int n = sc.nextInt();
+
+        // Store marks
+        for (int i = 0; i < n; i++) {
+            marks.add(sc.nextInt());
+        }
+
+        // Display marks
+        System.out.println("Student Marks:");
+        for (int mark : marks) {
+            System.out.print(mark + " ");
+        }
+
+        // Find highest mark and calculate total
+        int highest = marks.get(0);
+        int total = 0;
+
+        for (int mark : marks) {
+            if (mark > highest) {
+                highest = mark;
+            }
+            total += mark;
+        }
+
+        double average = (double) total / marks.size();
+
+        System.out.println("\n");
+        System.out.println("Highest Mark: " + highest);
+        System.out.printf("Average Mark: %.2f%n", average);
+
+        sc.close();
+    }
+}
+```
+
+**Concept Used:**
+
+* `ArrayList<Integer>` – stores a variable number of student marks.
+* `add()` – adds marks to the collection.
+* Enhanced `for` loop – displays marks and calculates statistics.
+* `get(0)` – accesses the first mark to initialize the highest mark.
+* Average = Total Marks / Number of Students.
